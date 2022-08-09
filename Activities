@@ -148,7 +148,7 @@ ACTIVITY4: Reverse Arrays
 Create an array containing a range with a random starting and stopping point.  The starting point will be a random number from -10 through 0.
 The ending point will be a random number from 1 through 20.
 
-$array=@((-9),(12))
+$array=@(-9..12)
 
 For example, if the first random number is -3, and the second random number is 2, your array will be -3, -2, -1, 0, 1, 2
 
