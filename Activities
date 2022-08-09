@@ -153,7 +153,7 @@ For example, if the first random number is -3, and the second random number is 2
 
 
 Create a variable that contains the contents of the array in reverse
-$newarr=$arr[-2..-22]
+$newarr=$arr[-22..-1]
 
 Using the above example, your reversed array will be 2, 1, 0, -1, -2, -3
 
