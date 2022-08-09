@@ -135,12 +135,6 @@ Write-Host "$var1" / "$var2" = "$quo"
 
 
 
-
-
-
-
-
-
 ACTIVITY4: Reverse Arrays
 
 
@@ -148,7 +142,7 @@ ACTIVITY4: Reverse Arrays
 Create an array containing a range with a random starting and stopping point.  The starting point will be a random number from -10 through 0.
 The ending point will be a random number from 1 through 20.
 
-$array=@(-9..12)
+$arr=@(-9..12)
 
 For example, if the first random number is -3, and the second random number is 2, your array will be -3, -2, -1, 0, 1, 2
 
@@ -159,8 +153,7 @@ For example, if the first random number is -3, and the second random number is 2
 
 
 Create a variable that contains the contents of the array in reverse
-[array]::Reverse($arr)
-
+$newarr=$arr[-2..-22]
 
 Using the above example, your reversed array will be 2, 1, 0, -1, -2, -3
 
