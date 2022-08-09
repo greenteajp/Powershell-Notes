@@ -56,7 +56,32 @@ $nospaces="death"
 $var1,$var2 = 25, 5   ###can create multiple variables in one line
 $var1 = $var2 = $var 3 = 25 ##3 all three v ariables equal same value
 
-get-variable var1 ### must omit the '$'       //### gci variable:
+get-variable var1 ### must omit the '$'       //### gci variable:  ##to get list of variables, or just get-variable
+
+
+
+
+### Need to know automatic variables!!!!!:
+
+$args
+Contains an array of values for undeclared parameters that are passed to a function, script, or script block. 
+When you create a function, you can declare the parameters by using the param keyword or by adding a comma-separated list 
+of parameters in parentheses after the function name.
+
+$input
+Contains an enumerator that enumerates all input that is passed to a function. 
+The $input variable is available only to functions and script blocks (which are unnamed functions).
+
+
+$_
+Same as $PSItem. Contains the current object in the pipeline object. 
+You can use this variable in commands that perform an action on every object or on selected objects in a pipeline.
+
+
+$PROFILE   ##3Like bashrcContains the full path of the PowerShell profile for the current user and the current host application. You can use this variable to represent the profile in commands. For example, you can use it in a command to determine whether a profile has been created:
+Contains the full path of the PowerShell profile for the current user and the current host application. 
+You can use this variable to represent the profile in commands. 
+For example, you can use it in a command to determine whether a profile has been created:
 
 
 
