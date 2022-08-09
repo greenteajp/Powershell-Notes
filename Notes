@@ -19,6 +19,7 @@ get-childitem -path C:\ -recurse -filter *.pf -name
 #default, '-filter' filters on one thing at a time
 #'-filter *.pf', parameter set
 
+
 gci -Red C:\Windows\System32 -filt *.pf -na
 get-childitem -recurse -filter *.pf C:\ -name
 #can shorten -recurse to -rec -re; and -filter to -filt ; -name to -na
@@ -28,10 +29,34 @@ get-service -name power,dnscache
 #get-service power,dnscache
 
 
-
 get-command -verb get | measure
 get-command -Noun *item | item | *item*
 Get-Command *fire*
 Get-Command get-*fire*
 #Best use:: get-command *keyword* i.ie tcp,udp, item, etc
+
+
+Alias:
+$alias:man, etc...
+#alias stored in variable $alias
+
+get-alias -definition get-childitem
+#setting/deleting alias. Only last per session, need persistence
+set-alias lmao explorer.exe
+del alias:lmao
+
+
+Variables:
+$number=61742
+$number - 1   ##variable substitution
+
+
+$nospaces="death"
+
+$var1,$var2 = 25, 5   ###can create multiple variables in one line
+$var1 = $var2 = $var 3 = 25 ##3 all three v ariables equal same value
+
+get-variable var1 ### must omit the '$'       //### gci variable:
+
+
 
