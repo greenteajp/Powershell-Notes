@@ -54,7 +54,7 @@ array
 
 $number=61742
 $number - 1   ##variable substitution
-
+$var = gci C:\Windows
 
 $nospaces="death"
 
@@ -116,9 +116,55 @@ $int.GetType().name == String
 [double]6.4 == 6.4
 [int]0xFF == 255, converts hex
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Arrays:
+###set of multiple values that one can index through
+
+Ways to make arrays:
+$array=@()  
+$number_arr= 4, 5,6
+[array]$blank_array=""    ###$blank_array.count will equal 1, thus not exactly empty, throws off indexes
+
+$number.arr.Getype().basetype.name ### check if it is an array   ###$array -is [array]   another way for checking if a variable is an array( can be used for int, float, etc...)
+if ($array.count -eq 0) { write-host "empty like my mind"}   ### compares to see if array is empty
+
+$poly_arr = (Get-ComputerInfo), "help me", 6472   ### can have strings, numbers, and cmdlets
+$poly_arr[1] ### reference element in array by index
+$poly_arr | Select-Object -Index 2 ### also like the above
+
+$seq_nums= 4..50  ###iterates through 1-50
+$seq_nums[-1], ### refernces the last element ### [-1..-5], [1,2,3,4,5] etc...
 
 
-
+###Nested Array
+Normal/Traditional Array -> $array = 1, 2, 3
+Nested/Jagged Array -> $nested=@, !, $array, # -> {@, !, {1, 2, 3}, #}
+                                                    output:
+                                                   @, $null, $null,
+                                                   !, $null, $null,
+                                                   1,      2,     3,
+                                                   #, $null,$null,
+ $nested[2]= 1, 2, 3
+ $nested[2][1] = 2
+ $nested[3][1] = $error   ### tried to grab null
+ 
+ 
+ 
+ ###Multi-Dimensional -> $multi = tri, square, $nested, cir
+ -> {tri, square, {@, ! {1, 2, 3}, #},cir}
+ output:
+ tri, $null
+ square,
+ @     , !, 1, #            ### fills the empty spaces with '$null'
+            2,
+            3,
+ cir
+ 
+ $multi[2]= @, !, {1, 2, 3}, #
+ $multi[2][2]= 1,2 ,3
+ $multi[2][2][1] = 2
+ $multi[1][2][3] = $error
+      
 
 
 
