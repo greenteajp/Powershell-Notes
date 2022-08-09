@@ -1,0 +1,170 @@
+ACTIVITY 1: Find Cmdlets
+
+
+
+Ensure that you have the latest copy of help by updating your help system.
+#update-help
+
+
+Which cmdlets deal with the viewing/manipulating of processes?
+#get-process; start-process; stop-process; wait-process; debug-process
+
+
+Display a list of services installed on your local computer.
+#get-service
+
+
+What cmdlets are used to write or output objects or text to the screen?
+#write-host
+
+
+What cmdlets can be used to create, modify, list, and delete variables?
+# clear-variable; get-variable; new-variable; remove-variable; set-variable
+
+
+
+What cmdlet can be used, other than Get-Help, to find and list other cmdlets?
+#get-command
+
+
+Find the cmdlet that is used to prompt the user for input.
+#read-host
+
+
+
+
+
+ACTIVITY2: Running Cmdlets
+
+
+Display a list of running processes.
+#get-process
+
+Display a list of all running processes that start with the letter "s".
+#get-process 'S*'
+
+Find the cmdlet and its purpose for the following aliases:
+#
+
+
+gal
+#gal -> Get-Alias
+
+dir
+#dir -> Get-Childitem
+
+echo
+#echo -> Write-Output
+
+?
+#? -> Where-Object
+
+%
+#% -> ForEach-Object
+
+ft
+#ft - > Format-Table
+
+
+
+
+Display a list of Windows Firewall Rules.
+#Get-NetFirewallRule
+
+Create a new alias called "gh" for the cmdlet "Get-Help"
+#Set-Alias -Name gh -Value Get-Help
+##-name and -value are optional
+
+
+
+ACTIVITY 3: Variables
+
+Create a variable called "var1" that holds a random number between 25-50.
+set-varaible var1 (Get-Random -min 25 -max 50)
+
+Create a variable called "var2" that holds a random number between 1-10.
+set-varaible var2 (Get-Random -min 1 -max 10)
+
+Create a variable called "sum" that holds the sum of var1 and var2.
+$sum=$var1+$var2
+
+Create a variable called "sub" that holds the difference of var1 and var2.
+$sub=$var1-$var2
+
+Create a variable called "prod" that holds the product of var1 and var2.
+$prod=$var1*$var2
+
+Create a variable called "quo" that holds the quotient of var1 and var2.
+$quo=$var1/$var2
+
+Replace the variables in text with their values in the following format:
+Write-Host "$var1" + "$var2" = "$sum"
+
+
+"var1" + "var2" = "sum"
+
+
+
+
+
+Replace the variables in text with their values in the following format:
+Write-Host "$var1" - "$var2" = "$sub"
+
+
+"var1" - "var2" = "sub"
+
+
+
+
+
+Replace the variables in text with their values in the following format:
+Write-Host "$var1" * "$var2" = "$prod"
+
+
+"var1" * "var2" = "prod"
+
+
+
+
+
+Replace the variables in text with their values in the following format:
+Write-Host "$var1" / "$var2" = "$quo"
+
+
+"var1" / "var2" = "quo"
+
+
+
+
+
+
+
+
+
+ACTIVITY4: Reverse Arrays
+
+
+
+Create an array containing a range with a random starting and stopping point.  The starting point will be a random number from -10 through 0.
+The ending point will be a random number from 1 through 20.
+
+$array=@((-9),(12))
+
+For example, if the first random number is -3, and the second random number is 2, your array will be -3, -2, -1, 0, 1, 2
+
+
+
+
+
+
+
+Create a variable that contains the contents of the array in reverse
+[array]::Reverse($arr)
+
+
+Using the above example, your reversed array will be 2, 1, 0, -1, -2, -3
+
+
+
+
+
