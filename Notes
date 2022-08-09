@@ -1,0 +1,4 @@
+xfreerdp /u:student /v:10.50.36.193 /dynamic-resolution +glyph-cache +clipboard
+
+
+
