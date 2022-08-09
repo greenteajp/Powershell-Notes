@@ -1,4 +1,37 @@
+## LOGIN
 xfreerdp /u:student /v:10.50.36.193 /dynamic-resolution +glyph-cache +clipboard
 
 
+update-help -Force -ErrorAction SilentlyContinue
+-ShowWindow for a "get-help/man 'cmdlet' " diplays a windows, usefull for ctrl-f
+
+Day 1:
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+get-childitem -path C:\ -recurse -filter *.pf -name
+
+#switch parameter: Boolean in nature. when used, the parameter is turned on
+#otherwise its off by default
+#-recurse
+
+#positional parameters: 
+#i.e '-path' , automatically added with get-childitem
+#default, '-filter' filters on one thing at a time
+#'-filter *.pf', parameter set
+
+gci -Red C:\Windows\System32 -filt *.pf -na
+get-childitem -recurse -filter *.pf C:\ -name
+#can shorten -recurse to -rec -re; and -filter to -filt ; -name to -na
+
+
+get-service -name power,dnscache
+#get-service power,dnscache
+
+
+
+get-command -verb get | measure
+get-command -Noun *item | item | *item*
+Get-Command *fire*
+Get-Command get-*fire*
+#Best use:: get-command *keyword* i.ie tcp,udp, item, etc
 
