@@ -234,7 +234,7 @@ gci | format-table name, $cols
  
  gci | Sort-Object -Property Extension | Format-Table -GroupBy Extension
 
-###Compare between two different outputs
+###Compares between two different outputs
 PS C:\Users\student\Documents\PowerShell Stuff> "ayy lmao" > test.txt
 
 PS C:\Users\student\Documents\PowerShell Stuff> $before = gci
