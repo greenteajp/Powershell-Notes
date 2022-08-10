@@ -197,7 +197,7 @@ $employee3["status"]= "entry level"
 The Pipeline Activity 6:
 
 Display the start time of the earliest and latest running processes
-#ps |where-objuect processname -ne "Idle"| Sort-Object starttime | Select-Object -first 1 -last 1 | Format-Table processname, starttime
+#ps |where-object processname -ne "Idle"| Sort-Object starttime | Select-Object -first 1 -last 1 | Format-Table processname, starttime
 
 Identify a cmdlet that returns the current date and time then using this cmdlet and Select-object, display only the current day of the week
 #Get-Date | format-table dayofweek
@@ -211,3 +211,47 @@ Extend the expression to sort the list by install date, and display only the ins
 Extend the expression further, but this time sort by description, include description, hotfix ID, and install Date.
 #Get-HotFix |sort-object -property description | format-table description, hotfixid, installedon
 
+
+
+
+
+
+
+
+Activity 7: 
+Create a custom object that contains information about the host system using the following:
+
+Win32_ComputerSystem
+
+Win32_BIOS
+
+Win32_OperatingSystem
+
+Win32_LogicalDisk
+
+Use the cmdlet Get-WmiObject to obtain the needed information
+
+
+Endstate
+
+
+ComputerName    : DESKTOP-5KJDVS2
+OperatingSystem : Microsoft Windows 10 Pro
+Version         : 10.0.17134
+Manufacturer    : Dell Inc.
+Disks           : {\\DESKTOP-                          5KJDVS2\root\cimv2:Win32_LogicalDisk.DeviceID="C:",
+                  \\DESKTOP-5KJDVS2\root\cimv2:Win32_LogicalDisk.DeviceID="D:"}
+
+$compinfo = gwmi win32_computersystem
+$osinfo = gwmi win32_operatingsystem
+$biosinfo = gwmi win32_bios
+$diskinfo = win32_logicaldisk
+
+myobject = new-object -Typename psobject
+
+$myobject | add-member -membertype -noteproperty -name computername -value $compinfo.name
+                                                 -name operatingsystem -value $osinfo.caption
+                                                 -name version -value $osinfo.version
+                                                 -name manuf -name $biosinfo.manufacturer
+                                                 -name Disks -value $diskinfo._path
+           
