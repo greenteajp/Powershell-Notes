@@ -351,7 +351,156 @@ $text -match $pattern  == true
 $ghosts = 'Inky', 'Blinky', 'Pinky', 'Clyde'
 $ghosts -contains 'pinky'  == true
 
-#in    does the same as contains
+#   -in    does the same as contains
+
+Combining operators:
+$num = 5
+(($num -gt 1) -and ($num -lt 10))  == true       ## can also use -or
+(($num -gt 4) -or ($num -lt 3))  == false
+
+
+
+
+
+
+
+ps | Where-Object {$_.Company -like 'micro*' } | ft Name, description, company
+gci *.txt | Where-Object{$_.length -gt 100}
+get-service| where -object{$_.status -eq 'running'}
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+If/elif/switch:
+
+###Basic syntax
+##If stops whens somethings true
+$x = 2
+if ($x -eq 5) {
+  write-host "Bob"
+}
+elseif ($x -eq 4) {
+  write-host "sue"
+}
+elseif ($x -eq 2) {
+  "tom"
+}
+elseif ($x -gt 1) {
+"mary"
+}
+else {
+  "who am i?"
+}
+
+
+
+## switch lists everything that is true
+switch(10)
+{
+  (1+9) {
+    "congrats, you did adds right"
+  }
+  (1 + 10) {
+    "this be wrong"
+  }
+  (11 - 1) {
+      "congrats, you did minus right"
+  }
+  (1 - 11) {
+      "congrats, you did math wrong"
+  }
+ }
+
+
+
+#Example 2 multiple values
+$num =2  #(Get-Random -mon 0 -max 10)
+switch($num) {
+{$_ -le 7} { "It is less than 7"}
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Loops:
+
+##has to go through everything then outputs
+###for each does it one at a time
+for (initialiation; condition; increment)
+{
+  code block to be executed.
+}
+
+##foreach
+foreach ($item in expression)
+{
+  code block to be execute
+}
+
+
+##foreach object
+$object | foreach-object {code block to be executed }
+foreach ($item in gci C:\ -recurse)($item.name)
+
+##While loops
+while(condition) {
+  code block to be executed
+}
+
+
+##how to make the while loop run alteast once
+do {
+  code block
+}while(condtion)
+
+
+Ex1:
+##
+$num = 4
+
+while($num -lt 3){$num;$num++ }
+
+$num
+
+Ex2:
+##
+$num = 4
+
+do{
+  $num
+  $num++
+}while($num -lt 3)
+
+$num
+
+Ex3:, samne as ex2^
+##
+$num = 4
+do{
+  $num
+  $num++
+}until($num -gt 3)
+
+$num
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
