@@ -1,34 +1,23 @@
 
-
-
 ACTIVITY 1: Find Cmdlets
-
-
 
 Ensure that you have the latest copy of help by updating your help system.
 #update-help
 
-
 Which cmdlets deal with the viewing/manipulating of processes?
 #get-process; start-process; stop-process; wait-process; debug-process
-
 
 Display a list of services installed on your local computer.
 #get-service
 
-
 What cmdlets are used to write or output objects or text to the screen?
 #write-host
-
 
 What cmdlets can be used to create, modify, list, and delete variables?
 # clear-variable; get-variable; new-variable; remove-variable; set-variable
 
-
-
 What cmdlet can be used, other than Get-Help, to find and list other cmdlets?
 #get-command
-
 
 Find the cmdlet that is used to prompt the user for input.
 #read-host
@@ -36,9 +25,8 @@ Find the cmdlet that is used to prompt the user for input.
 
 
 
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ACTIVITY2: Running Cmdlets
-
 
 Display a list of running processes.
 #get-process
@@ -48,7 +36,6 @@ Display a list of all running processes that start with the letter "s".
 
 Find the cmdlet and its purpose for the following aliases:
 #
-
 
 gal
 #gal -> Get-Alias
@@ -66,10 +53,7 @@ echo
 #% -> ForEach-Object
 
 ft
-#ft - > Format-Table
-
-
-
+#ft - > Format-Tablere the objects results into variables to be used in the custom object
 
 Display a list of Windows Firewall Rules.
 #Get-NetFirewallRule
@@ -79,7 +63,7 @@ Create a new alias called "gh" for the cmdlet "Get-Help"
 ##-name and -value are optional
 
 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ACTIVITY 3: Variables
 
 Create a variable called "var1" that holds a random number between 25-50.
@@ -106,19 +90,11 @@ Write-Host "$var1" + "$var2" = "$sum"
 
 "var1" + "var2" = "sum"
 
-
-
-
-
 Replace the variables in text with their values in the following format:
 Write-Host "$var1" - "$var2" = "$sub"
 
 
 "var1" - "var2" = "sub"
-
-
-
-
 
 Replace the variables in text with their values in the following format:
 Write-Host "$var1" * "$var2" = "$prod"
@@ -126,27 +102,14 @@ Write-Host "$var1" * "$var2" = "$prod"
 
 "var1" * "var2" = "prod"
 
-
-
-
-
 Replace the variables in text with their values in the following format:
 Write-Host "$var1" / "$var2" = "$quo"
 
 
 "var1" / "var2" = "quo"
 
-
-
-
-
-
-
-
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ACTIVITY4: Reverse Arrays
-
-
 
 Create an array containing a range with a random starting and stopping point.  The starting point will be a random number from -10 through 0.
 The ending point will be a random number from 1 through 20.
@@ -162,11 +125,6 @@ $arr=@(-9..12)
 For example, if the first random number is -3, and the second random number is 2, your array will be -3, -2, -1, 0, 1, 2
 
 
-
-
-
-
-
 Create a variable that contains the contents of the array in reverse
 $newarr=$arr[-22..-1]
 
@@ -178,7 +136,7 @@ $newarr=$arr[-22..-1]
 Using the above example, your reversed array will be 2, 1, 0, -1, -2, -3
 
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ACTIVITY5: Arrays & Hash Tables
 $employee1=@{}
 $employee2=@{}
@@ -193,7 +151,7 @@ $employee2["status"]= "intermediate"
 $employee3["status"]= "entry level"
 
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 The Pipeline Activity 6:
 
 Display the start time of the earliest and latest running processes
@@ -217,7 +175,7 @@ Extend the expression further, but this time sort by description, include descri
 
 
 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Activity 7: 
 Create a custom object that contains information about the host system using the following:
 
@@ -255,3 +213,49 @@ $myobject | add-member -membertype -noteproperty -name computername -value $comp
                                                  -name manuf -name $biosinfo.manufacturer
                                                  -name Disks -value $diskinfo._path
            
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Comparison and Condition Activity 8:
+
+Find and extract the model number from the provided lines of text. If there isn’t a model number then display to the user that a model number wasn’t found
+Check both lines for model numbers and report individually the line and model number if found
+
+Use the following variables for your script
+
+$line1 = "Do you have model number: MT5437 for john.doe@sharklasers.com?"
+$line2 = "What model number for john.doe@sharklasers.com?"
+
+
+Exercise Criteria
+Must use at least ONE comparison operator
+Must use at least ONE If Condition OR Switch Statement
+Reminder of options available
+
+Switch Statement
+If/IfElse/Else Condition
+match, contains, in, -eq, -le, etc…​
+Comparison combinations
+
+$line1
+$line2
+$modelpat = '([A-Za-z]{2})\d{2,5}'
+switch($modelpat)
+{
+    {$line1 -match $_} {
+        $line1 -match $modelpat | out-null
+        $model = $matches[0]
+        "yes the model number is $model" }
+    { $line2 -match $_} {
+    $line2 -match $modelpat | out-null
+    $modelpat = $matches[0]
+         "yes the model number is $model" }
+    {$line1 -notmatch $_} {
+        "There is no model number in line1" }
+    {$line2 -notmatch $_} {
+    "There is no model number in line2"}
+
+
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
