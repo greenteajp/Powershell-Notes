@@ -258,18 +258,6 @@ Length Name     SideIndicator
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ScriptBlock:
 $mybloack = {get-service | format-table name, status}
-The Pipeline Activity
-
-    Display the start time of the earliest and latest running processes
-
-    Identify a cmdlet that returns the current date and time then using this cmdlet and Select-object, display only the current day of the week
-
-    Identify a cmdlet that displays a list of installed hotfixes.
-
-    Extend the expression to sort the list by install date, and display only the install date and hotfix ID.
-
-    Extend the expression further, but this time sort by description, include description, hotfix ID, and install Date.
-
 
 & $myblock        #runs the scriptblock
 
@@ -281,15 +269,31 @@ $b = { 1 + 1 + $c }
 $a += &$b
 
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Objects:
+###Create new object using new-object
+$mycar = New-Object Object 
 
+### Adding properties using add-memeber
+Add-Member -MemberType NoteProperty -Name color -value "Reddish-Orange" -InputObject $mycar
 
+###Using shortened parameter names
+Add-Member -Me NoteProperty -Na make -value Ford -input $mycar
 
+Add-Member -InputObject $mycar noteproperty model "1969 429 Boss"
 
+$mycar | add-member noteproperty Cab "Four-Door"
 
+Add-Member -me ScriptMethod -na drive -value {"Fast and loud"} -InputObject $mycar
 
+Add-Member -me ScriptMethod -na handling -value {"No power steering, handles like a champ"} -InputObject $mycar
 
+Add-Member -me ScriptMethod -na value/rairity -value {"Super Expensive, Super Rare"} -InputObject $mycar
+$mycar |fl
+$mycar.drive()
+$mycar.make/model/Cab
 
-
+###
 
 
 
