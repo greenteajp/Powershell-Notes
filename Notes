@@ -297,6 +297,8 @@ $mycar.make/model/Cab
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Conditionals:
+##comparison operators if needed be case sensitive put a 'c' before it
+
 
 # Equals     ###Always comparing to what is on the left
 2 -eq 2
@@ -340,6 +342,16 @@ Conditionals:
 "Pinky" -notlike "[A-F]inky"  == false
 "Clyde" -notlike "[DEF]lyde"  == True
 
+#match
+$text = "Your account username is ACE4495"
+$pattern = '([A-F]{3})(\d{4})'
+$text -match $pattern  == true
+
+#contains
+$ghosts = 'Inky', 'Blinky', 'Pinky', 'Clyde'
+$ghosts -contains 'pinky'  == true
+
+#in    does the same as contains
 
 
 
