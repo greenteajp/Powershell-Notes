@@ -342,8 +342,35 @@ Using the above example, your reversed array will be 2, 1, 0, -1, -2, -3
 
 
 
+ACTIVITY5: Arrays & Hash Tables
+$employee1=@{}
+$employee2=@{}
+$employee1=[ordered]@{first="mary"; last="hopper"; id="001" ; job="software developer"}
+$employee2=[ordered]@{first="john"; last="williams"; id="002" ; job="web developer"}
+$employee1.add("Username", "mhopper001")                                                                                                                                                       
+$employee2.add("Username", "jwilliams002")                                                                   
+$employee1["job"]= "software lead"
+$employee3=[ordered]@{first="alex"; last="moran"; id="003" ; job="software developer"}
+$employee1["status"]= "management"                                                                    
+$employee2["status"]= "intermediate"                                                                  
+$employee3["status"]= "entry level"
 
 
 
+The Pipeline Activity 6:
 
+Display the start time of the earliest and latest running processes
+#ps |where-objuect processname -ne "Idle"| Sort-Object starttime | Select-Object -first 1 -last 1 | Format-Table processname, starttime
+
+Identify a cmdlet that returns the current date and time then using this cmdlet and Select-object, display only the current day of the week
+#Get-Date | format-table dayofweek
+
+Identify a cmdlet that displays a list of installed hotfixes.
+#Get-Hotfix
+
+Extend the expression to sort the list by install date, and display only the install date and hotfix ID.
+#Get-HotFix |sort-object -property installedon | format-table installedon, hotfixid
+
+Extend the expression further, but this time sort by description, include description, hotfix ID, and install Date.
+#Get-HotFix |sort-object -property description | format-table description, hotfixid, installedon
 
