@@ -166,6 +166,130 @@ Nested/Jagged Array -> $nested=@, !, $array, # -> {@, !, {1, 2, 3}, #}
  $multi[1][2][3] = $error
       
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Hash Table:
+ 
+$hashy=@{key="value" ; key2="value2" ; } #manually creates a hash table
+
+$another=@{}        ###empty hash table
+$another.Ayy_Lmao = "yes"       ###adds to hash table
+$another["AYYY"] = "lmao"   ###same as above
+$another.Add("Kannneeeda","Tetsuuuoooo")      ###same as above
+
+$ordered = [ordered]@{}
+$ordered."McDonalds" = @("BigMac", "1 Chiccy Nuggy", "Caramel Frappe", "2 Lg Fries")
+        ### Name = McDonalds ; Value = "BigMac......."
+$ordered["Chik-fila-A"]="Salad"
+$ordered.Add("Taco Bell", "shits")
+$ordered."Chik-fila-A"    -OR- $ordered.["chik-fila-A"]       ### calls the value for the key/name
+
+$orderd.keys/.values    ### shows said item
+$ordered["Taco Bell", "McDonalds"]   ### gets values for two keys
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PIPELINES!!!!:
+
+##### works for any cmdlet
+get-service | format-table *   
+get-service | format-list *   
+get-service | get-memeber     ### gives methods and properties of get-service
+get-member -InputObject get-service     ###gives methods specific for get-service
+get-Service bfe | get-Member     ### gives methods/property for 'bfe'
+(Get-Service bfe).StartType       ### shows startype, i.e 'automatic'
+(get-service bfe).stop()          ### stops a service
+Get-Service | sort-object -property status    ###orders stopped/running
+Get-Service | group-object -property status     ###groups number of stopped/running
+Get-Service | Sort-Object status,name     ###sorts of status, then name in alpha
+
+Get-Service | Where-Object {$_.status -eq "Running"}      ###gives only running services
+ps | where-object {$_.Name -notlike 'powershell*' } | Sort-Object id -Descending
+ps | select-object -first 10
+ps svchost | Select-Object -ExpandProperty handles
+
+gci | Measure-Object length
+gci | Measure-Object length -Average -Maximum -Minimum -sum
+
+
+
+
+
+'1', '7', '10', '8', '2', '3' | Sort-Object   ###sorts in ascii order
+'1', '7', '10', '8', '2', '3' | Sort-Object -Property {[int]$_}     ###sorts as integers
+1..10 | sort-object -Property {Get-Random}      ###sorts in random order
+
+
+###write-host sensd to screen, cant pipeline 
+###write-output puts it through pipeline 
+
+
+Get-Command -Verb format ###gives methods of formating
+###format-wide/table/list/custom
+I.E. get-service| format-table name, status
+
+
+$cols = @{Label='KB'; Expression = { [ int]($_.Length/1KB) }}
+gci | format-table name, $cols
+ 
+ 
+ 
+ gci | Sort-Object -Property Extension | Format-Table -GroupBy Extension
+
+###Compare between two different outputs
+PS C:\Users\student\Documents\PowerShell Stuff> "ayy lmao" > test.txt
+
+PS C:\Users\student\Documents\PowerShell Stuff> $before = gci
+
+PS C:\Users\student\Documents\PowerShell Stuff> '42' > test.txt
+
+PS C:\Users\student\Documents\PowerShell Stuff> $after = gci
+PS C:\Users\student\Documents\PowerShell Stuff> compare-object $before $after -Property Length, Name
+
+Length Name     SideIndicator
+------ ----     -------------
+    10 test.txt =>           
+    22 test.txt <=           
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ScriptBlock:
+$mybloack = {get-service | format-table name, status}
+The Pipeline Activity
+
+    Display the start time of the earliest and latest running processes
+
+    Identify a cmdlet that returns the current date and time then using this cmdlet and Select-object, display only the current day of the week
+
+    Identify a cmdlet that displays a list of installed hotfixes.
+
+    Extend the expression to sort the list by install date, and display only the install date and hotfix ID.
+
+    Extend the expression further, but this time sort by description, include description, hotfix ID, and install Date.
+
+
+& $myblock        #runs the scriptblock
+
+
+alt:
+$a = 1
+$c = 1
+$b = { 1 + 1 + $c }
+$a += &$b
+
+
+
+
+
+
+
+
+
+
+
 
 
 
