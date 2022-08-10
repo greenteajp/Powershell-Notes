@@ -151,7 +151,7 @@ Nested/Jagged Array -> $nested=@, !, $array, # -> {@, !, {1, 2, 3}, #}
  
  
  ###Multi-Dimensional -> $multi = tri, square, $nested, cir
- -> {tri, square, {@, ! {1, 2, 3}, #},cir}
+ -> {tri, square, {@, ! {1, 2, 3}Custom Object, #},cir}
  output:
  tri, $null
  square,
@@ -293,7 +293,64 @@ $mycar |fl
 $mycar.drive()
 $mycar.make/model/Cab
 
-###
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Conditionals:
+
+# Equals     ###Always comparing to what is on the left
+2 -eq 2
+2 -eq 3
+1,2,3 -eq 2
+"abc" -eq "abc"
+"abc" -eq "abc", "def" == false
+"abc" , "def" -eq "abc" == abc
+
+#Not equals
+"abc" -ne "def" == true
+"abc" -ne "abc" == false
+"abc" -ne "abc", "def" == true
+"abc", "def" -ne "abc" == def
+
+#Greater Than
+8 -gt 6 == true
+7, 8, 9 -gt 8 == 9
+
+#Less than
+6 -lt 8 == true
+7,8,9 -lt 9 ==  7,8
+
+#Greater than or equal tp
+6 -ge 6 == true
+5,6,7 -ge 6 == 6,7
+
+#Less than or equal to
+6 -le 6 == true
+5,6,7 -le 6 == 5,6
+
+#like   uses wildcards
+"inky" -like "*" == true
+"Blinky" -like "Bl?nky" == true
+"Pinky" -like "[L-Q]inky" == true
+"Clyde" -like "[ABC]lyde" == true
+
+#notlike  uses regex
+"inky" -notlike "*"  == false
+"Blinky" -notlike "Bli?nky" == true
+"Pinky" -notlike "[A-F]inky"  == false
+"Clyde" -notlike "[DEF]lyde"  == True
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
