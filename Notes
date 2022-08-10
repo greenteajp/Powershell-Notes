@@ -102,7 +102,62 @@ $int="something"
 $int.GetType().name == string
 
 $int=4
-$int.GetType().name == Int32
+
+ACTIVITY: Looping & Iteration
+
+    Part 1
+
+        Use an array to iterate and open the following
+
+            Notepad
+
+            MS Edge
+
+            MSpaint
+
+        Query the processes
+
+        Kill the processes from PowerShell
+
+    Part 2
+
+        Use an array to iterate and open the following
+
+            Notepad
+
+            MS Edge
+
+            MSpaint
+
+        Query the processes
+
+        Save the ProcessIDs to a text file called procs.txt
+
+        Iterate through the ProcessIDs in the text file and kill them
+
+    Part 3
+
+        Use an array to iterate and open the following
+
+            Notepad
+
+            MS Edge
+
+            MSpaint
+
+        Query the processes and display only the following information in order by process ID
+
+            Process ID
+
+            Process Name
+
+            The time the process started
+
+            The amount of time the process has spent on the processor
+
+            The amount of memory assigned to the process
+
+This $int.GetType().name == Int32
 
 [string]$int= 42
 $int.GetType().name == String
@@ -407,8 +462,7 @@ switch(10)
       "congrats, you did minus right"
   }
   (1 - 11) {
-      "congrats, you did math wrong"
-  }
+      "congrats, you did math wrong  }
  }
 
 
@@ -433,7 +487,7 @@ for (initialiation; condition; increment)
 foreach ($item in expression)
 {
   code block to be execute
-}
+} {
 
 
 ##foreach object, shows everything as its going
