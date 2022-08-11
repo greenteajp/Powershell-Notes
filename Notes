@@ -553,6 +553,71 @@ Reading/Write to/from a file:
 ##add-content -path <file> -value ""
 ##(Get-Content <file>)[0]    ### displays via index of file
 
+Shorten Paths:
+$profile.AllUsersAllHosts
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Functions:
+
+
+###Declare function -> 
+    Function <function name> { <function code goes here> }
+
+ex1. function Hello-World { 'Hello World!!!' }
+        -OR-
+    function Hello-World {
+    'Hello World!!!'
+    }
+
+###call/execute function via name
+
+###When a function is declared, it only exists for that individual PWSH session/script. Store in the function 'PSDrive'
+        ***gci function:*   to view all of the functions
+            get-content function: <function name>      
+            
+##Functions with a parameter
+function <function name> ($<parameter name>) { <function code> }    ##parameter will be a varaible when passed to the function
+
+ex1:
+function basic-param ($value) {
+if ($value) {
+    write-host "The parameter is $value" -forgroundcolor green -nonewline
+ }
+else {
+    write-host "There is no parameter being paseed" -forgroundcolor red
+ }
+}
+
+
+##calling the fucntion:
+basic-param 42 == The parameter is 42
+-OR_
+basic-param -value 42
+The parameter is 42
+
+basic-param == There is no parameter being passed
+
+
+###multiple parameters:
+function <function name> ($1, $2, $3) { <code> }
+
+function many-params ($value1, $value2) {
+        if ($value1 -gt $value2) {
+            write-host "$value1"    -foregroundcolor green -nonewline
+            write-host " is bigger than "   -nonewline
+            write-host "$value2"    -foregroundcolor red -nonewline
+           }
+        elseif ( $value2 -gt $value1) {
+            write-host "$value2"
+            write-host "is bigger than "
+            write-host "$value1"
+           }
+        else { return -1 }
+}
+many-params 4,2 -OR- many-params -valu1 6 -value2 8
+
+
 
 
 
