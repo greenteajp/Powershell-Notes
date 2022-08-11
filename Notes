@@ -309,6 +309,24 @@ Length Name     SideIndicator
 
 
 
+    Create an advanced function using Begin, Process, and End, that takes two(2) arguments. The first argument being an array of at least ten(10) integers and the second argument being a single integer. Search the array argument for every occurrence of the single integer argument then return the sum of all elements in the array excluding every occurrence of the single integer argument.
+
+Example
+
+PS> get-multisum @(1,2,3,4,5,6,7,8,9,10) 5
+50
+
+    Create an advanced function using Begin, Process, End, that prompts the user to enter the names of three(3) U.S. States then returns the names of the states in the order of longest name to shortest name and the amount of characters in each name.
+
+Example
+
+PS> Get-LongestName
+Georgia: 7
+Idaho: 5
+Utah: 4
+
+
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ScriptBlock:
@@ -619,13 +637,154 @@ many-params 4,2 -OR- many-params -valu1 6 -value2 8
 
 
 
+###Functions with default paramters:
+function <function name> {
+param (
+    $parameter1='<default value>', $parameter2='<default value>'
+    )
+    <function code
+  }
+
+
+ex1:
+function Default-Params {
+    param(
+        $parameter1='90', $parameter2='65536' 
+      )
+        "The parameters passed are $parameter1 and $parameter2"
+}
+default-params 3389 445, above params are dset default until specified here
+
+
+
+###Functions with switch parameters:
+function <function name> {
+    param(
+        [switch]            ###boolean logic, either on/off
+        $switchparam
+     )
+     <function code>
+}
+functionname -switchparam           ###how you turn switch on or off
+
+
+###Mandatory Parameters
+function <function name> {
+    param(
+        [Parameter(Mandatory=$true)]
+        #The mandatory=$true forces the function to request a parameter if no argument was specififed when 
+        calling the function
+    $param
+  )
+    <function code>
+}
+
+
+ex1:
+function mando-param {
+    param(
+        [Parameter(Mandatory=$True)]
+        $param
+     )
+while ([string]::IsNullOrWhiteSpace($param)) {)
+
+    $param = read-host -prompt "Enter a string"
+       #if the param is null/empty, it will prompt for a string until a char is entered
+ }
+ 
+ 
+ 
+ 
+###Advanced functions
+function <function name>
+        param(
+            [Parameter(Mandatory=$True,HelpMessage=<message>)]
+          #the helpmessage will display the message once the user types "!?" when requesting the mandatory param
+          $param
+      )
+      <function code>
+ }
+ 
+ 
+ ex1:
+ function Help-Params {
+    param([Parameter(Mandatory=$true,helpmessage="Type in a number")]
+    [int]$param
+  )
+  
+  "The argument `"$param`" was mandatory for the parameter"
+}
+
+
+
+function Positional-params {
+param(
+    [Parameter(Mandatory=$true,Position=0)]
+    [int]
+    $num,
+    [Parameter(Mandatory=$true, Position=1)]
+    [string]
+    $string,
+    [Parameter(Mandatory=$true,Position=2)]
+    [string]
+    $anotherstring
+    )
+    
+    write-output "$num is the first postitional parameter"
+    write-output "$string is the second"
+    write-output "$anotherstring is the third positional parameter"
+}
+ Positional-params -string "balloons" 1 "five"
 
 
 
 
+function cmdlet-function {
+[CmdletBinding(DefaultParameterSetName='Tacos')]
+    param(
+        [Parameter(ParameterSetName="Tacos",Position=0, Mandatory=$true)]
+        $flavor,
+        [Parameter(ParameterSetName="Tacos", Mandatory=$true)]
+        $cheese,
+        [Parameter(ParameterSetName="Tacos", Mandatory=$true)]
+        $spice,
+        [Parameter(ParameterSetName="Burritos", Mandatory=$true)]
+        $beans,
+        [Parameter(ParameterSetName="Burritos", Mandatory=$true)]
+        $rice
+        )
+        $ParameterSetName = $PSCmdlet.ParameterSetname
+        "The $ParameterSetName Parameter Set was utilized"       
+}
 
-
-
+ 
+ 
+ 
+ 
+ ###FunctionBlocks
+ 
+function function-blocks {
+[CmdletBinding()]
+        param()
+        
+        Begin{...}
+        # this is used to provide optional one-time preprocessing for the function
+        #does whatever is in here prior to anything else in the function
+      
+        Process{...}
+        #this block is used to provide record-be-record processing for the function.
+        #executes code as many times as necessary based off how mnay objects are sent to the function through PWSH pipline
+        #can use '$_' to grab the individual values passed to the function without having to call on $input or $args.
+        
+        End{...}
+        #This block is used to provide optional one-time post-processing for the function
+        #Executes this code at the end of the function prior to exiting the function
+        
+        
+}
+Function-Blocks
+ 
+ 
 
 
 
