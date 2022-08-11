@@ -333,7 +333,30 @@ foreach($proc in $process){ Get-Process | Where-Object{$_.Name -like $proc} | FT
 
 
 
+Activity 10: Create Functions
 
+Write a function that returns the Ordinal date of the current date.
+function Get-OrdinalDate ($year, $dayofyear) {
+    $year = (get-date).Year
+    $dayofyear = (get-date).dayofyear
+    write-host "$year-$dayofyear"
+    }
+    
+
+
+
+Create a function that takes a number(n) as an argument and returns the square(n^2) of the number.
+function get-squarenum ($num) {
+    $num * $num
+    }
+    
+
+
+Create a function that takes three (3) arguments and returns the product of the arguments.
+function get-product ($a, $b, $c) {
+    $a * $b * $c
+    }
+    
 
 
 
