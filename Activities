@@ -61,6 +61,9 @@ Display a list of Windows Firewall Rules.
 Create a new alias called "gh" for the cmdlet "Get-Help"
 #Set-Alias -Name gh -Value Get-Help
 ##-name and -value are optional
+ent -path <file> -value ""
+##add-content -path <file> -value ""
+##(Get-Content <file>)[0]    ### displays via index of file
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -144,7 +147,10 @@ $employee1=[ordered]@{first="mary"; last="hopper"; id="001" ; job="software deve
 $employee2=[ordered]@{first="john"; last="williams"; id="002" ; job="web developer"}
 $employee1.add("Username", "mhopper001")                                                                                                                                                       
 $employee2.add("Username", "jwilliams002")                                                                   
-$employee1["job"]= "software lead"
+$employee1["job"]= "software lead"ent -path <file> -value ""
+##add-content -path <file> -value ""
+##(Get-Content <file>)[0]    ### displays via index of file
+
 $employee3=[ordered]@{first="alex"; last="moran"; id="003" ; job="software developer"}
 $employee1["status"]= "management"                                                                    
 $employee2["status"]= "intermediate"                                                                  
@@ -258,17 +264,27 @@ switch($modelpat)
 
 }
 --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 ACTIVITY 9: Looping & Iteration
-
-
 
 Part 1
 Use an array to iterate and open the following
 Notepad
 MS Edge
 MSpaint
+
 Query the processes
+
 Kill the processes from PowerShell
+
+$process="notepad", "mspaint", "msedge"
+foreach ($proc in $process) { start-process $proc;get-process $proc;stop-process -name $proc}
+
+-OR-
+$procs | ForEach-Object {Start-Process $_}
+Get-Process
+$procs | ForEach-Object { Stop-Process -processname $_}
 
 
 
@@ -278,12 +294,24 @@ Use an array to iterate and open the following
 Notepad
 MS Edge
 MSpaint
+
 Query the processes
+
 Save the ProcessIDs to a text file called procs.txt
+
 Iterate through the ProcessIDs in the text file and kill them
 
+$process=("notepad", "mspaint", "iexplore")
+$file = "$pwd\procs.txt"
+foreach ($proc in $process) { start-process $proc;get-process -name $proc; add-content -path $file -value (Get-Process -name $proc | Select-Object -ExpandProperty ID)}
 
 
+
+-OR-
+$process | ForEach-Object { Start-Process $_}
+$file = "$pwd\procs.txt"
+foreach ($proc in $process){get-process | Where-Object{$_.Name -like $proc} | ForEach-Object{Add-Content $file $_.ID}
+Get-Content .\procs.txt | ForEach-Object{Stop-Process -id $_}
 
 
 Part 3
@@ -291,12 +319,21 @@ Use an array to iterate and open the following
 Notepad
 MS Edge
 MSpaint
+
 Query the processes and display only the following information in order by process ID
 Process ID
 Process Name
 The time the process started
 The amount of time the process has spent on the processor
 The amount of memory assigned to the process
+
+$process="notepad", "mspaint", "msedge"
+$process | ForEach-Object { start-process $_}
+foreach($proc in $process){ Get-Process | Where-Object{$_.Name -like $proc} | FT -Property id, name ,starttime, totalprocessortime, VirtualMemorySize, WorkingSet64 }
+
+
+
+
 
 
 
