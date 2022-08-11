@@ -332,7 +332,7 @@ $process | ForEach-Object { start-process $_}
 foreach($proc in $process){ Get-Process | Where-Object{$_.Name -like $proc} | FT -Property id, name ,starttime, totalprocessortime, VirtualMemorySize, WorkingSet64 }
 
 
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Activity 10: Create Functions
 
 Write a function that returns the Ordinal date of the current date.
