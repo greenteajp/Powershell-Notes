@@ -341,7 +341,7 @@ function Get-OrdinalDate ($year, $dayofyear) {
     $dayofyear = (get-date).dayofyear
     write-host "$year-$dayofyear"
     }
-    
+    get-squarenum 7
 
 
 
@@ -349,14 +349,138 @@ Create a function that takes a number(n) as an argument and returns the square(n
 function get-squarenum ($num) {
     $num * $num
     }
-    
+    Number-Squared 9
 
 
 Create a function that takes three (3) arguments and returns the product of the arguments.
 function get-product ($a, $b, $c) {
     $a * $b * $c
     }
-    
+    get-product 5 6 7
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Function Parameters Activity 11:
+
+Create a function that takes two(2) integer values, $a and $b, that are the lengths of two(2)
+legs of a right triangle and returns the length of the hypotenuse.
+Use the Pythagorean Theorem (a2 + b2 = c2) to find the value of the hypotenuse.
+function get-pythag { 
+  param(
+    [Parameter(Mandatory=$true,Position=0)]
+    [int]
+    $TriangleSideOne,
+    [Parameter(Mandatory=$true, Position=1)]
+    [int]
+    $TriangleSideTwo
+    )
+    $c2 = ($a * $a) + ($b * $b )
+    [math]::sqrt($c2)
+    write-output "$TriangleSideOne is the length of one side of the triangle"
+    write-output "$TriangleSideTwo is length of another side of the triangle"
+    write-output "$c is the hypotenuse"
+}
+function Find-Hyptenuse($a, $b) {
+  $c2= ($a * $a) + ($b + $b)
+  [math]::Sqrt($c2)
+}
+
+
+
+
+Create a function that takes two(2) values, $a and $b, as two(2) angles in degrees of a triangle.
+Return the value of the missing angle.
+All angles of a triangle add up to be 180 degrees
+function get-thirddegree { 
+  param(
+    [Parameter(Mandatory=$true,Position=0)]
+    [int]
+    $a,
+    [Parameter(Mandatory=$true, Position=1)]
+    [int]
+    $b
+    )
+    $c = 180 - ($a + $b)
+    write-output "$c is the last angle"
+}
+
+
+
+
+Create a function that takes the following as mandatory parameters:
+First Name
+Last Name
+Age
+Weight in pounds(lbs)
+
+and returns the information in a hash table using the keys: first, last, age, and weight with the weight value 
+converted to kilograms(kg) rounded to the nearest whole number
+One(1) Kilogram(Kg) = 2.2 pounds(lbs)
+
+function get-personinfo { 
+  param(
+    [Parameter(Mandatory=$true,Position=0, helpmessage="Type in your First Name")]
+    [string]
+    $FirstName,
+    [Parameter(Mandatory=$true, Position=1)]
+    [string]
+    $LastName,
+    [Parameter(Mandatory=$true,Position=2)]
+    [int]       ###[ValidateRange(0,100)]
+    #[int]#$Age,
+    [Parameter(Mandatory=$true, Position=3)]
+    [int]
+    $WeightInPounds
+    )
+    [int]$kilo = $weightInPounds / 2.2            $kilo=[math]::Round[#weght / 2.2]
+    $info = [ordered]@{ FirstName= "$FirstName" ; LastName = "$LastName" ; Age = "$Age" ; WeightinKilos = "$kilo kgs" }
+    $info
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Advanced Functions Activity 12:
+Create an advanced function using Begin, Process, and End, that takes two(2) arguments.
+ The first argument being an array of at least ten(10) integers and the second argument being a single integer.
+  Search the array argument for every occurrence of the single integer argument then
+   return the sum of all elements in the array excluding  every occurrence of the single integer argument.
+Example
+PS> get-multisum @(1,2,3,4,5,6,7,8,9,10) 5
+50
+
+
+function Find-sums ([array]$array, [int]$nums) {
+    Begin {
+        $num = 0
+    }
+    Process {
+        ForEach ($numb in $array) {
+            if ($numb -ne $nums) {
+                   $sum = $sum + $numb
+                }
+            }
+        }
+        End {
+                write-host $sum
+        }
+}
+find-sums @(1,2,3,4,5,6,7,8,9,10) 5
+ 
+ 
+ 
+
+
+Create an advanced function using Begin, Process, End, that prompts the user to enter the names of three(3) 
+U.S. States then returns the names of the states in the order of longest name to shortest name 
+and the amount of characters in each name.
+Example
+PS> Get-LongestName
+Georgia: 7
+Idaho: 5
+Utah: 4
+
+
+
+
+
 
 
 
