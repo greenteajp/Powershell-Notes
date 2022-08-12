@@ -74,23 +74,25 @@ $env:HomePath = $HOME
 
 ### Need to know automatic variables!!!!!:
 
-$args
+$args           ###
 Contains an array of values for undeclared parameters that are passed to a function, script, or script block. 
 When you create a function, you can declare the parameters by using the param keyword or by adding a comma-separated list 
 of parameters in parentheses after the function name.
 
-$input
+$input          ###for being, end etc
 Contains an enumerator that enumerates all input that is passed to a function. 
 The $input variable is available only to functions and script blocks (which are unnamed functions).
 
-$_    ###same as $PSItem
+$_    ###same as $PSItem                        ###for pipelines
 Same as $PSItem. Contains the current object in the pipeline object. 
 You can use this variable in commands that perform an action on every object or on selected objects in a pipeline.
 
-$PROFILE   ##3Like bashrcContains the full path of the PowerShell profile for the current user and the current host application. You can use this variable to represent the profile in commands. For example, you can use it in a command to determine whether a profile has been created:
+$PROFILE   ###Like bashrcContains the full path of the PowerShell profile for the current user and the current host application. You can use this variable to represent the profile in commands. For example, you can use it in a command to determine whether a profile has been created:
 Contains the full path of the PowerShell profile for the current user and the current host application. 
 You can use this variable to represent the profile in commands. 
 For example, you can use it in a command to determine whether a profile has been created:
+
+
 
 $null
 $null is an automatic variable that contains a null or empty value. 
@@ -786,6 +788,69 @@ function function-blocks {
 Function-Blocks
  
  
+ 
+ 
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------
+ Regex/Backticks:
+ `
+ `n ### newline
+ `` #excape character
+ `t #tab
+ "They said `"Hello`""
+ 
+@"
+They said
+`"Hello`"
+"@
+
+$var= "-Abraham"
+invoke-expression @"
+`"Hello`"
+write-host $null            ###empty line
+`$var
+"@
+$Howmanyneeded = "One petabyte can store $(1PB / 2.39MB) Instances of DOOM (1993)"          $$$ the '$' performs the calculation
+
+
+
+"string" -split("r")
+ ("C:\filepath\directory\..." -split('\\'))[-1] ### gets the final path of
+ 
+ 
+ REGEX:
+ \d ### digits
+ \D ### anything but a digit
+ \w ### letter number or character
+ \W ### not a letter number or character
+ \s ### whitespace
+ \S ### not a whitespace
+ \n ### linebreak , newline
+ \b ### boundary
+ $ ### begining of a line
+ ^ ### end of a line
+ | ### or
+ [a-z] ### matches a through z, lower
+    [abz], a or b or z
+ (abz) ### matches the pattern 'abz'
+ [^zxy] ### matches anything but z or x or y
+ & ### and
+ * ### anything
+ ? ### none or once
+ {7} ### exactly 7 times
+ {3,} ### atleast 3 times
+ {1,3} ### min one to three times
+ + ### once or multiple
+ 
+ (yes|no) ### yes or no
+ [a-z0-9] ### matches for lower for a character within a -> z / 0 -> 9
+ 
+ 
+ $arr=@('PSC', 'We_Graduated_COSC', 'Happiness')
+ $arr -join('=')
+ 
+"I really love the weather in Cali" -replace 'Cali','Florida'
+
+
 
 
 
