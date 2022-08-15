@@ -1,6 +1,6 @@
 ## LOGIN
 xfreerdp /u:student /v:10.50.36.193 /dynamic-resolution +glyph-cache +clipboard
-
+https://vta.cybbh.space
 
 update-help -Force -ErrorAction SilentlyContinue
 -ShowWindow for a "get-help/man 'cmdlet' " diplays a windows, usefull for ctrl-f
